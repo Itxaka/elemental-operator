@@ -6,8 +6,7 @@ and maintaining a machine inventory to assist with edge or baremetal installatio
 ## Installation
 
 The Elemental operator can be added to a cluster running Rancher Multi Cluster
-Management server.  It is a helm chart and can be installed as follows:
-
+Management server.  Iasfasdfasfsdfa
 ```bash
 helm -n cattle-elemental-system install --create-namespace elemental-operator https://github.com/rancher/elemental-operator/releases/download/v0.1.0/elemental-operator-0.1.0.tgz
 ```
