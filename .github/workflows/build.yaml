@@ -24,12 +24,18 @@ jobs:
             ${{ runner.os }}-build-go-${{ hashFiles('**/go.sum') }}
       - name: Build
         run: make build
-      - name: add artifact links to pull request
-        uses: tonyhallett/artifacts-url-comments@v1.1.0
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Store operator binary
+        uses: actions/upload-artifact@v3
         with:
-            prefix: Here are the artifacts 
-            suffix: Have a nice day.
-            format: name
-            addTo: pull
+          name: elemental-operator
+          path: build/elemental-operator
+      - name: Store register binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: elemental-register
+          path: build/elemental-register
+      - name: Store support binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: elemental-support
+          path: build/elemental-support
