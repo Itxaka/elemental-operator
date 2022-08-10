@@ -1,7 +1,7 @@
 name: add artifact links to pull request and related issues
 on:
   workflow_run:
-    workflows: ['Build']
+    workflows: ['Build', 'Build and publish chart']
     types: [completed]
 
 jobs:
