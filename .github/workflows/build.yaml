@@ -24,13 +24,12 @@ jobs:
             ${{ runner.os }}-build-go-${{ hashFiles('**/go.sum') }}
       - name: Build
         run: make build
-      - name: Pull request artifacts
-        if: ${{ github.event_name == 'pull_request' }}
-        uses: gavv/pull-request-artifacts@v1.0.0
+      - name: add artifact links to pull request
+        uses: tonyhallett/artifacts-url-comments@v1.1.0
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          commit: ${{ github.event.pull_request.head.sha }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: |
-            build/elemental-operator
-            build/elemental-register
-            build/elemental-support
+            prefix: Here are the artifacts 
+            suffix: Have a nice day.
+            format: name
+            addTo: pull
