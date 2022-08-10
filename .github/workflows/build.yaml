@@ -24,3 +24,13 @@ jobs:
             ${{ runner.os }}-build-go-${{ hashFiles('**/go.sum') }}
       - name: Build
         run: make build
+      - name: Pull request artifacts
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: gavv/pull-request-artifacts@v1.0.0
+        with:
+          commit: ${{ github.event.pull_request.head.sha }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: |
+            build/elemental-operator
+            build/elemental-register
+            build/elemental-support
